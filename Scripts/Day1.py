@@ -20,8 +20,7 @@ def part2(data):
     first_index = 0
     second_index = 1
     count = 0
-    for i in range(len(data)):
-
+    while second_index+2 < len(data):
         first_window = data[first_index:first_index+3]
         second_window = data[second_index:second_index+3]
         if sum(second_window) > sum(first_window):
