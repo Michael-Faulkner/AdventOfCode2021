@@ -18,8 +18,11 @@ def part1(data):
             num_list = line.split()
             nums = [int(x) for x in num_list]
             current_board.append(nums)
-
+    boards.append(current_board)
     boards = boards[1:]
+    marked_boards.append(
+        [['o', 'o', 'o', 'o', 'o'], ['o', 'o', 'o', 'o', 'o'], ['o', 'o', 'o', 'o', 'o'], ['o', 'o', 'o', 'o', 'o'],
+         ['o', 'o', 'o', 'o', 'o']])
     marked_boards = marked_boards[1:]
     found_board = False
     for num in numbers:
@@ -30,18 +33,6 @@ def part1(data):
                         marked_boards[i][row_idx][column_idx] = 'x'
 
         for j in range(len(boards)):
-            #check diagnols
-            if marked_boards[j][0][0] == marked_boards[j][1][1] == marked_boards[j][2][2] == marked_boards[j][3][3] == marked_boards[j][4][4] == 'x':
-                found_board = True
-                score_board(data, boards[j], num)
-                break
-
-            if marked_boards[j][0][4] == marked_boards[j][1][3] == marked_boards[j][2][2] == marked_boards[j][3][1] == marked_boards[j][4][0] == 'x':
-                found_board = True
-                score_board(data, boards[j], num)
-                break
-
-
             for row_idx in range(5):
                 if marked_boards[j][row_idx][4] == marked_boards[j][row_idx][3] == marked_boards[j][row_idx][2] == marked_boards[j][row_idx][1] == marked_boards[j][row_idx][0] == 'x':
                     found_board = True
@@ -115,17 +106,6 @@ def part2(data):
 
         for j in range(len(boards)):
             if boards[j] not in won_boards:
-                #check diagnols
-                if marked_boards[j][0][0] == marked_boards[j][1][1] == marked_boards[j][2][2] == marked_boards[j][3][3] == marked_boards[j][4][4] == 'x':
-
-                    won_boards.append(boards[j])
-                    score_board(data, boards[j], num)
-
-                if marked_boards[j][0][4] == marked_boards[j][1][3] == marked_boards[j][2][2] == marked_boards[j][3][1] == marked_boards[j][4][0] == 'x':
-                    won_boards.append(boards[j])
-                    score_board(data, boards[j], num)
-
-
                 for row_idx in range(5):
                     if marked_boards[j][row_idx][4] == marked_boards[j][row_idx][3] == marked_boards[j][row_idx][2] == marked_boards[j][row_idx][1] == marked_boards[j][row_idx][0] == 'x':
                         won_boards.append(boards[j])
