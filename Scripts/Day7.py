@@ -26,9 +26,7 @@ def part2(data):
     cost = 10000000000000
     for i in range(min_n, max_n):
         spot = i
-        fuel_costs = [x - spot for x in numbers]
-        fuel_costs = [np.abs(x) for x in fuel_costs]
-        fuel_costs = [sum(range(x+1)) for x in fuel_costs]
+        fuel_costs = [sum(range(np.abs(x-spot)+1)) for x in numbers]
         total = sum(fuel_costs)
         if total < cost:
             cost = total
